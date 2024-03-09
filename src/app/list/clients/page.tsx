@@ -1,35 +1,14 @@
-import { Payment, columns } from "./columns"
+import { Client, columns } from "./columns"
 import { DataTable } from "@/components/list/data-table"
 
-async function getData(): Promise<Payment[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 200,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 300,
-      status: "pending",
-      email: "m@example.com",
-    },
-    {
-      id: "728ed52f",
-      amount: 700,
-      status: "pending",
-      email: "m@example.com",
-    },
-  ]
+async function getData(): Promise<Client[]> {
+  const res = await fetch(
+    'http://localhost:3000/api/v1/users'
+  )
+  const data = await res.json()
+  return data['users']
 }
+
 
 export default async function DemoPage() {
   const data = await getData()
